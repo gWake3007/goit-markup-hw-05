@@ -17,6 +17,8 @@
   --subtle-text: #8e8f99;
   /* CORN FLOWER */
   --accent: #e7e9fc;
+  /* Transition, Duration ,Timing-Function */
+  --head-how-focus: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 p,
@@ -84,18 +86,23 @@ section {
   display: flex;
 }
 
-/* Color-body-VAR */
 .body-portfolio {
   color: var(--colorbody-portfolio);
 }
 
 /* Header */
-.header-portfolio {
+.header {
   padding-bottom: 25px;
   padding-top: 25px;
   border-bottom: 1px solid var(--accent);
   box-shadow: 0px 2px 1px rgba(46, 47, 66, 0.08),
     0px 1px 1px rgba(46, 47, 66, 0.16), 0px 1px 6px rgba(46, 47, 66, 0.08);
+}
+
+.header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 /* nav */
@@ -115,16 +122,25 @@ section {
 }
 
 .link-list {
+  padding: 29px 0;
   font-weight: 500;
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: #2e2f42;
+  position: relative;
+  transition: color var(--head-how-focus);
 }
 
-.link-list:hover,
-.link-list:focus {
-  color: #404bbf;
+.hover-band::after {
+  content: "";
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: var(--pressed-state);
 }
 
 .all-link-list {
@@ -148,11 +164,18 @@ section {
   line-height: 1.5;
   letter-spacing: 0.02em;
   color: #434455;
+  display: inline-flex;
+  align-items: center;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-flex;
 }
 
+.link-list:hover,
+.link-list:focus,
 .address-link:hover,
 .address-link:focus {
-  color: #404bbf;
+  color: var(--pressed-state);
 }
 
 .link-adress {
@@ -195,12 +218,9 @@ section {
   flex: none;
   order: 1;
   flex-grow: 0;
-}
-
-/* portfolio-button-VAR */
-
-.all-button {
-  background-color: var(--brand-color);
+  transition-property: color, background-color, border-color, box-shadow;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .all-button:hover,
@@ -243,10 +263,6 @@ section {
   gap: 48px 24px;
 }
 
-.gadget-li {
-  width: 360px;
-}
-
 .portfolio-conteiner {
   border: 1px solid var(--cornflower);
   border-top: none;
@@ -258,13 +274,40 @@ section {
   padding-left: 16px;
 }
 
-.portfolio-title .link{
+.portfolio-title .link {
   display: inline-block;
+  transition: box-shadow var(--head-how-focus);
 }
 
 .portfolio-title .link:hover {
   box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
     0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  top: 100%;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 40px 32px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: var(--light);
+  background-color: var(--primacy-brand);
+  transition: transform var(--head-how-focus);
+}
+
+.overlay-text-wrap {
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio-title-list .link:hover .overlay {
+  transform: translateY(-100%);
 }
 
 /* HERO */
@@ -312,6 +355,9 @@ section {
   letter-spacing: 0.04em;
   color: #ffffff;
   border: none;
+  transition-property: background-color;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .button-studio:hover,
@@ -364,6 +410,10 @@ section {
 }
 
 /* Second-Section */
+
+.gadget-li {
+  width: 360px;
+}
 
 .gadget-li:not(:last-child) {
   margin-right: 24px;
@@ -436,6 +486,7 @@ section {
   border-radius: 50%;
   fill: var(--light);
   text-decoration: none;
+  transition: background-color var(--head-how-focus);
 }
 
 .social-link:hover,
@@ -465,6 +516,11 @@ section {
   border: 1px solid var(--subtle-text);
   border-radius: 4px;
   fill: var(--subtle-text);
+  transition: border-color var(--head-how-focus);
+}
+
+.icon-customers {
+  transition: fill var(--head-how-focus);
 }
 
 .customers-link:hover,
@@ -570,6 +626,7 @@ section {
   background-color: rgba(255, 255, 255, 0.1);
   fill: var(--light);
   text-decoration: none;
+  transition: background-color var(--head-how-focus);
 }
 
 .fot-social-link:hover,
@@ -579,4 +636,40 @@ section {
 
 .name-social {
   color: #ffffff;
+}
+
+/*========== MODAL JS ==========*/
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(27, 31, 37, 0.526);
+}
+
+.modal {
+  width: 408px;
+  min-height: 576px;
+  background-color: #fcfcfc;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  padding: 24px;
+}
+
+.close-modal{
+  display: block;
+  margin-left: auto;
+  border-radius: 50%;
+}
+
+.is-hidden{
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }

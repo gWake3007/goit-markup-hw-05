@@ -20,7 +20,7 @@
   /* MODAL BACKGROUND */
   --dairy: #fcfcfc;
   /* Transition, Duration ,Timing-Function */
-  --head-how-focus: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-duration: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 p,
@@ -131,7 +131,7 @@ section {
   letter-spacing: 0.02em;
   color: var(--dark);
   position: relative;
-  transition: color var(--head-how-focus);
+  transition: color var(--transition-duration);
 }
 
 .hover-band::after {
@@ -168,8 +168,7 @@ section {
   color: var(--text);
   display: inline-flex;
   align-items: center;
-  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-flex;
 }
 
@@ -220,9 +219,10 @@ section {
   flex: none;
   order: 1;
   flex-grow: 0;
-  transition-property: color, background-color, border-color, box-shadow;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition: color var(--transition-duration),
+    background-color var(--transition-duration),
+    border-color var(--transition-duration),
+    box-shadow var(--transition-duration);
 }
 
 .all-button:hover,
@@ -278,7 +278,7 @@ section {
 
 .portfolio-title .link {
   display: inline-block;
-  transition: box-shadow var(--head-how-focus);
+  transition: box-shadow var(--transition-duration);
 }
 
 .portfolio-title .link:hover {
@@ -300,7 +300,7 @@ section {
   letter-spacing: 0.02em;
   color: var(--light);
   background-color: var(--primacy-brand);
-  transition: transform var(--head-how-focus);
+  transition: transform var(--transition-duration);
 }
 
 .overlay-text-wrap {
@@ -357,9 +357,7 @@ section {
   letter-spacing: 0.04em;
   color: var(--white);
   border: none;
-  transition-property: background-color;
-  transition-duration: 250ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color var(--transition-duration);
 }
 
 .button-studio:hover,
@@ -488,7 +486,12 @@ section {
   border-radius: 50%;
   fill: var(--light);
   text-decoration: none;
-  transition: background-color var(--head-how-focus);
+  transition: background-color var(--transition-duration);
+}
+
+.social-link.icon{
+  display: block;
+  margin: 0 auto;
 }
 
 .social-link:hover,
@@ -518,11 +521,11 @@ section {
   border: 1px solid var(--subtle-text);
   border-radius: 4px;
   fill: var(--subtle-text);
-  transition: border-color var(--head-how-focus);
+  transition: border-color var(--transition-duration);
 }
 
 .icon-customers {
-  transition: fill var(--head-how-focus);
+  transition: fill var(--transition-duration);
 }
 
 .customers-link:hover,
@@ -628,7 +631,7 @@ section {
   background-color: rgba(255, 255, 255, 0.1);
   fill: var(--light);
   text-decoration: none;
-  transition: background-color var(--head-how-focus);
+  transition: background-color var(--transition-duration);
 }
 
 .fot-social-link:hover,
@@ -648,7 +651,8 @@ section {
   width: 100%;
   height: 100%;
   background-color: rgba(27, 31, 37, 0.526);
-  transition: opacity var(--head-how-focus), visibility var(--head-how-focus);
+  transition: opacity var(--transition-duration),
+    visibility var(--transition-duration);
 }
 
 .modal {
@@ -662,14 +666,12 @@ section {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) scale(1);
-  transition: transform var(--head-how-focus);
+  transition: transform var(--transition-duration);
   padding: 24px;
-
 }
 
-.backdrop.is-hidden .modal{
+.backdrop.is-hidden .modal {
   transform: translate(-50%, -50%) scale(0);
-
 }
 
 .close-modal {
